@@ -2,11 +2,14 @@ package com.peaksoft.SpringSecurityMVCToken.service;
 
 import com.peaksoft.SpringSecurityMVCToken.dto.group.GroupRequest;
 import com.peaksoft.SpringSecurityMVCToken.dto.group.GroupResponse;
+import com.peaksoft.SpringSecurityMVCToken.dto.group.GroupResponseView;
 import com.peaksoft.SpringSecurityMVCToken.mappers.group.GroupEditMapper;
 import com.peaksoft.SpringSecurityMVCToken.mappers.group.GroupViewMapper;
 import com.peaksoft.SpringSecurityMVCToken.models.Group;
 import com.peaksoft.SpringSecurityMVCToken.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,5 +47,17 @@ public class GroupService {
         Group group = repository.getById(id);
         repository.deleteById(id);
         return viewMapper.viewGroup(group);
+    }
+
+    public GroupResponseView searchByDate(String name, int page, int size) {
+        GroupResponseView responseView = new GroupResponseView();
+        Pageable pageable = PageRequest.of(page, size);
+        responseView.setGroupResponses(viewMapper.viewGroups(viewMapper.searchGroupByDate
+                (name, pageable)));
+        return responseView;
+    }
+
+    public Long countGroup() {
+        return repository.count();
     }
 }

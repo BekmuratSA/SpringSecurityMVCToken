@@ -2,11 +2,14 @@ package com.peaksoft.SpringSecurityMVCToken.service;
 
 import com.peaksoft.SpringSecurityMVCToken.dto.course.CourseRequest;
 import com.peaksoft.SpringSecurityMVCToken.dto.course.CourseResponse;
+import com.peaksoft.SpringSecurityMVCToken.dto.course.CourseResponseView;
 import com.peaksoft.SpringSecurityMVCToken.mappers.course.CourseEditMapper;
 import com.peaksoft.SpringSecurityMVCToken.mappers.course.CourseViewMapper;
 import com.peaksoft.SpringSecurityMVCToken.models.Course;
 import com.peaksoft.SpringSecurityMVCToken.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,5 +47,17 @@ public class CourseService {
         Course course = repository.getById(id);
         repository.deleteById(id);
         return viewMapper.viewCourse(course);
+    }
+
+    public CourseResponseView searchAndPaginationCourse(String name, int page, int size) {
+        CourseResponseView responseView = new CourseResponseView();
+        Pageable pageable = PageRequest.of(page, size);
+        responseView.setCourseResponses(viewMapper.viewCourses(
+                viewMapper.searchCourseName(name, pageable)));
+        return responseView;
+    }
+
+    public Long countCourse() {
+        return repository.count();
     }
 }

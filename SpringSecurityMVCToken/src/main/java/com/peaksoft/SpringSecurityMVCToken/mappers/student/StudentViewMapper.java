@@ -40,8 +40,8 @@ public class StudentViewMapper {
         return responses;
     }
 
-    public List<Student> search(String name, Pageable pageable) {
+    public List<Student> searchStudentName(String name, Pageable pageable) {
         String text = name == null ? "" : name;
-        return repository.search2(text.toUpperCase(), pageable);
+        return repository.searchByName(text.toUpperCase(), pageable);
     }
 }

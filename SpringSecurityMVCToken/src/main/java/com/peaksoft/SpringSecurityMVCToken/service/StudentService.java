@@ -53,7 +53,7 @@ public class StudentService {
         StudentResponseView responseView = new StudentResponseView();
         Pageable pageable = PageRequest.of(page, size);
         responseView.setStudentResponses(viewMapper.viewStudents
-                (viewMapper.search(name, pageable)));
+                (viewMapper.searchStudentName(name, pageable)));
         return responseView;
     }
 

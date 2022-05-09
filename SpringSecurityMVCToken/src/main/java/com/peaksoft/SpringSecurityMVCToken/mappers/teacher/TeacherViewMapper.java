@@ -2,13 +2,19 @@ package com.peaksoft.SpringSecurityMVCToken.mappers.teacher;
 
 import com.peaksoft.SpringSecurityMVCToken.dto.teacher.TeacherResponse;
 import com.peaksoft.SpringSecurityMVCToken.models.Teacher;
+import com.peaksoft.SpringSecurityMVCToken.repository.TeacherRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class TeacherViewMapper {
+
+    private final TeacherRepository repository;
 
     public TeacherResponse viewTeacher(Teacher teacher) {
         if (teacher == null) {
@@ -31,5 +37,10 @@ public class TeacherViewMapper {
             responses.add(viewTeacher(teacher));
         }
         return responses;
+    }
+
+    public List<Teacher> searchByNameAndLastnameAndEmailAndCourseName(String name, Pageable pageable) {
+        String text = name == null ? "" : name;
+        return repository.search(text.toUpperCase(), pageable);
     }
 }

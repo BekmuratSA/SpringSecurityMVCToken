@@ -36,7 +36,7 @@ public class CompanyController {
 
     @GetMapping("/getById/{id}")
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
-    @Operation(summary = "A user with the User role can watch.")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can watch.")
     public CompanyResponse getByIdCompany(@PathVariable Long id) {
         return service.getByIdCompany(id);
     }
@@ -50,7 +50,7 @@ public class CompanyController {
 
     @GetMapping("/getAll")
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
-    @Operation(summary = "A user with the User role can watch.")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can watch.")
     public List<CompanyResponse> getAllCompanies() {
         return service.getAllCompanies();
     }

@@ -2,13 +2,19 @@ package com.peaksoft.SpringSecurityMVCToken.mappers.course;
 
 import com.peaksoft.SpringSecurityMVCToken.dto.course.CourseResponse;
 import com.peaksoft.SpringSecurityMVCToken.models.Course;
+import com.peaksoft.SpringSecurityMVCToken.repository.CourseRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class CourseViewMapper {
+
+    private final CourseRepository repository;
 
     public CourseResponse viewCourse(Course course) {
         if (course == null) {
@@ -31,4 +37,9 @@ public class CourseViewMapper {
         }
         return responses;
     }
- }
+
+    public List<Course> searchCourseName(String name, Pageable pageable) {
+        String text = name == null ? "" : name;
+        return repository.searchByNameAndCompanyName(text.toUpperCase(), pageable);
+    }
+}

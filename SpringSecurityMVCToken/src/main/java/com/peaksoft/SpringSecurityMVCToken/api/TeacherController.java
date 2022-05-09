@@ -2,6 +2,7 @@ package com.peaksoft.SpringSecurityMVCToken.api;
 
 import com.peaksoft.SpringSecurityMVCToken.dto.teacher.TeacherRequest;
 import com.peaksoft.SpringSecurityMVCToken.dto.teacher.TeacherResponse;
+import com.peaksoft.SpringSecurityMVCToken.dto.teacher.TeacherResponseView;
 import com.peaksoft.SpringSecurityMVCToken.service.TeacherService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,7 +37,7 @@ public class TeacherController {
 
     @GetMapping("/getById/{id}")
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
-    @Operation(summary = "A user with the SuperAdmin role and Admin role and User role can watch.")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can watch.")
     public TeacherResponse getByIdTeacher(@PathVariable Long id) {
         return service.getByIdTeacher(id);
     }
@@ -50,8 +51,24 @@ public class TeacherController {
 
     @GetMapping("/getAll")
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
-    @Operation(summary = "A user with the SuperAdmin role and Admin role and user role can watch.")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and user role can watch.")
     public List<TeacherResponse> getAllTeachers() {
         return service.getAllTeachers();
+    }
+
+    @GetMapping("/search")
+    @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can search.")
+    public TeacherResponseView getSearchAndPagination(@RequestParam(name = "name", required = false)
+                                                      String name, @RequestParam int page,
+                                                      @RequestParam int size) {
+        return service.searchByNameAndLastnameAndEmailAndCourse(name, page-1, size);
+    }
+
+    @GetMapping("/count")
+    @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can count.")
+    public String countTeachers() {
+        return "Количество преподавателя: " + service.countTeacher();
     }
 }

@@ -38,7 +38,7 @@ public class StudentController {
 
     @GetMapping("/getById/{id}")
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
-    @Operation(summary = "A user with the SuperAdmin role and Admin role and User role can watch.")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can watch.")
     public StudentResponse getByIdStudent(@PathVariable Long id) {
         return service.getByIdStudent(id);
     }
@@ -59,7 +59,7 @@ public class StudentController {
 
     @GetMapping("/pagination")
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
-    @Operation(summary = "A user with the SuperAdmin role and Admin role and User role can watch.")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can search.")
     public StudentResponseView getSearchPagination(@RequestParam(name = "name", required = false)
                                                  String name, @RequestParam int page,
                                                    @RequestParam int size) {
@@ -68,7 +68,7 @@ public class StudentController {
 
     @GetMapping("/count")
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
-    @Operation(summary = "A user with the SuperAdmin role and Admin role and User role can watch.")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can count.")
     public String countStudents() {
         return "Количество студентов: " + service.countStudent();
     }
