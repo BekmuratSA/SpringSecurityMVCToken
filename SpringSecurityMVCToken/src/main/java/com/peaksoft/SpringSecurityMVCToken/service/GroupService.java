@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -49,11 +50,11 @@ public class GroupService {
         return viewMapper.viewGroup(group);
     }
 
-    public GroupResponseView searchByDate(String name, int page, int size) {
+    public GroupResponseView searchByDate(LocalDate date, int page, int size) {
         GroupResponseView responseView = new GroupResponseView();
         Pageable pageable = PageRequest.of(page, size);
         responseView.setGroupResponses(viewMapper.viewGroups(viewMapper.searchGroupByDate
-                (name, pageable)));
+                (LocalDate.parse(date.toString()) , pageable)));
         return responseView;
     }
 

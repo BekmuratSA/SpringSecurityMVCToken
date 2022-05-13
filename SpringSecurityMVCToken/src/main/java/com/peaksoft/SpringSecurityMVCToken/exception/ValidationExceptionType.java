@@ -1,4 +1,4 @@
-package com.peaksoft.SpringSecurityMVCToken.dto;
+package com.peaksoft.SpringSecurityMVCToken.exception;
 
 public class ValidationExceptionType {
 

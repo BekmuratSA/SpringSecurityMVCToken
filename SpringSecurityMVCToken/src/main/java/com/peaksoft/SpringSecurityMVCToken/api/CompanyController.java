@@ -6,6 +6,7 @@ import com.peaksoft.SpringSecurityMVCToken.service.CompanyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,5 +54,11 @@ public class CompanyController {
     @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can watch.")
     public List<CompanyResponse> getAllCompanies() {
         return service.getAllCompanies();
+    }
+
+    @GetMapping("/count")
+    @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can watch.")
+    public String countCompanies() {
+        return "Количество компании: " + service.countCompany() + " компания.";
     }
 }

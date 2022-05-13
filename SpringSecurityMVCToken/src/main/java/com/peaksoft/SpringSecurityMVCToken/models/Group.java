@@ -20,6 +20,7 @@ public class Group {
     @GeneratedValue(generator = "group_gen", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "group_gen", sequenceName = "group_seq", allocationSize = 1)
     private Long id;
+    @Column(unique = true, length = 30)
     private String groupName;
     private LocalDate dateOfStart;
     private LocalDate dateOfFinish;

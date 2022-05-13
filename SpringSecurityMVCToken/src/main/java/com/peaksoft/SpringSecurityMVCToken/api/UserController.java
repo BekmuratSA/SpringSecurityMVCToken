@@ -1,12 +1,12 @@
 package com.peaksoft.SpringSecurityMVCToken.api;
 
 import com.peaksoft.SpringSecurityMVCToken.config.JWTTokenUtil;
-import com.peaksoft.SpringSecurityMVCToken.dto.ValidationExceptionType;
+import com.peaksoft.SpringSecurityMVCToken.exception.ValidationExceptionType;
 import com.peaksoft.SpringSecurityMVCToken.dto.authority.AuthRequest;
 import com.peaksoft.SpringSecurityMVCToken.dto.authority.AuthResponse;
 import com.peaksoft.SpringSecurityMVCToken.dto.user.UserRequest;
 import com.peaksoft.SpringSecurityMVCToken.dto.user.UserResponse;
-import com.peaksoft.SpringSecurityMVCToken.mappers.authoruty.AuthViewMapper;
+import com.peaksoft.SpringSecurityMVCToken.mappers.authority.AuthViewMapper;
 import com.peaksoft.SpringSecurityMVCToken.models.securityModels.User;
 import com.peaksoft.SpringSecurityMVCToken.repository.UserRepository;
 import com.peaksoft.SpringSecurityMVCToken.service.UserServiceImpl;

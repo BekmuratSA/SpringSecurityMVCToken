@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -59,16 +60,16 @@ public class GroupController {
     @GetMapping("/search")
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
     @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can search.")
-    public GroupResponseView getSearchAndPagination(@RequestParam(name = "name", required = false)
-                                                    String name, @RequestParam int page,
+    public GroupResponseView getSearchAndPagination(@RequestParam(name = "date", required = false)
+                                                                LocalDate date, @RequestParam int page,
                                                     @RequestParam int size) {
-        return service.searchByDate(name, page-1, size);
+        return service.searchByDate(date, page-1, size);
     }
 
     @GetMapping("/count")
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
     @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can count.")
     public String countGroups() {
-        return "Количество групп: " + service.countGroup();
+        return "Количество групп: " + service.countGroup() + " группы.";
     }
 }

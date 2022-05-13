@@ -45,4 +45,8 @@ public class CompanyService {
         repository.deleteById(id);
         return viewMapper.viewCompany(company);
     }
+
+    public Long countCompany() {
+        return repository.count();
+    }
 }

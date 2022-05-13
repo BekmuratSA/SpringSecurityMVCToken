@@ -1,4 +1,4 @@
-package com.peaksoft.SpringSecurityMVCToken.mappers.authoruty;
+package com.peaksoft.SpringSecurityMVCToken.mappers.authority;
 
 import com.peaksoft.SpringSecurityMVCToken.dto.authority.AuthResponse;
 import com.peaksoft.SpringSecurityMVCToken.models.securityModels.Role;
@@ -21,7 +21,6 @@ public class AuthViewMapper {
         authResponse.setMessage(message);
         return authResponse;
     }
-
 
     private void setAuthority(AuthResponse response, List<Role> roles) {
         Set<String> authorities = new HashSet<>();

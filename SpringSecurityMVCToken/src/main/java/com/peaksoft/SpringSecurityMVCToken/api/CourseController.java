@@ -69,6 +69,6 @@ public class CourseController {
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
     @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can count")
     public String countCourses() {
-        return "Количество курсов: " + service.countCourse();
+        return "Количество курсов: " + service.countCourse() + " курсы.";
     }
 }

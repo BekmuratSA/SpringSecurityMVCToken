@@ -18,9 +18,12 @@ public class Student {
     @GeneratedValue(generator = "student_gen",strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "student_gen", sequenceName = "student_seq", allocationSize = 1)
     private Long id;
+    @Column(unique = true, length = 30)
     private String firstname;
     private String lastname;
+    @Column(unique = true, length = 45)
     private String email;
+    @Enumerated(EnumType.STRING)
     private StudyFormat studyFormat;
 
     @OneToOne

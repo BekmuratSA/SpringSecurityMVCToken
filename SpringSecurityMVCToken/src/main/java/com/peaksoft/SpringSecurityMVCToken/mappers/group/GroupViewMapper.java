@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +41,8 @@ public class GroupViewMapper {
         return responses;
     }
 
-    public List<Group> searchGroupByDate(String name, Pageable pageable) {
-        String text = name == null ? "" : name;
-        return repository.search(text.toUpperCase(), pageable);
+    public List<Group> searchGroupByDate(LocalDate name, Pageable pageable) {
+        LocalDate date = name == null ? LocalDate.parse("") : name;
+        return repository.search(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), pageable);
     }
 }

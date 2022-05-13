@@ -70,6 +70,6 @@ public class StudentController {
     @PreAuthorize("hasAnyAuthority('SuperAdmin', 'Admin', 'User')")
     @Operation(summary = "A user with the SuperAdmin role, Admin role and User role can count.")
     public String countStudents() {
-        return "Количество студентов: " + service.countStudent();
+        return "Количество студентов: " + service.countStudent() + " студенты.";
     }
 }

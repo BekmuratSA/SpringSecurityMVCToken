@@ -13,6 +13,6 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Query("select c from Course c inner join c.company com where upper(c.courseName) " +
-            "like concat('%', :name, '%')")
+            "like concat('%', :name, '%') or upper(com.companyName) like concat('%', :name, '%') ")
     List<Course> searchByNameAndCompanyName(@Param("name") String name, Pageable pageable);
 }

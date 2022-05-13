@@ -24,8 +24,10 @@ public class User implements UserDetails {
     @GeneratedValue(generator = "user_gen", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "user_gen", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
+    @Column(unique = true, length = 30)
     private String firstname;
     private String lastname;
+    @Column(unique = true, length = 45)
     private String email;
     private String password;
     private LocalDateTime created;

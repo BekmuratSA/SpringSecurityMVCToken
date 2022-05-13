@@ -17,8 +17,10 @@ public class Teacher {
     @GeneratedValue(generator = "teacher_gen",strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "teacher_gen", sequenceName = "teacher_seq", allocationSize = 1)
     private Long id;
+    @Column(unique = true, length = 30)
     private String firstname;
     private String lastname;
+    @Column(unique = true, length = 45)
     private String email;
 
     @OneToOne
